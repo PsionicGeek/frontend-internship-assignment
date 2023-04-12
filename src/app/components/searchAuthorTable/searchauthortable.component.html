@@ -1,0 +1,42 @@
+
+<ng-container >
+    <div *ngIf="((dataSource.loading$|async) === false) && dataSource.resultsFound.value===0">
+        <div class="tw-text-24-px tw-m-24-px">No results found
+
+        </div>
+    </div>
+
+
+
+    <mat-table   *ngIf="dataSource.resultsFound.value!==0" class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="author">
+            <mat-header-cell *matHeaderCellDef>Author Name </mat-header-cell>
+            <mat-cell *matCellDef="let lesson">{{lesson.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="top">
+            <mat-header-cell *matHeaderCellDef>Top Work</mat-header-cell>
+            <mat-cell class="description-cell"
+                      *matCellDef="let lesson">{{lesson.top_work}}</mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="work">
+            <mat-header-cell *matHeaderCellDef>Work Count</mat-header-cell>
+            <mat-cell class="duration-cell"
+                      *matCellDef="let lesson">{{lesson.work_count}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick(row)"></mat-row>
+
+    </mat-table  >
+    <div  *ngIf="((dataSource.loading$|async))" class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+    <mat-paginator  [pageSizeOptions]="[ 10, 15]" [length]="dataSource.resultsFound.value"></mat-paginator>
+
+</ng-container>
+

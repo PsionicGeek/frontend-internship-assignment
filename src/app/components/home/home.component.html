@@ -1,23 +1,49 @@
+<div class="body">
 <div class="header">
+  <a href="/" class="home-style">
   <div class="tw-text-24-px tw-font-600">Open Books Library</div>
-  <div class="search-button">
-    <mat-icon class="tw-mt-16-px" aria-label="Search Icon">search</mat-icon>
-    <input
-      [formControl]="bookSearch"
-      name="searchKey"
-      type="text"
-      placeholder="Search Books"
-      class="tw-border-0 tw-bg-inherit"
-    >
-  </div>
+    </a>
+    <mat-form-field >
+      <input
+        matInput
+        [formControl]="bookSearch"
+        name="searchKey"
+        type="text"
+        placeholder="Search Books or authors"
+        class="tw-border-0 tw-bg-inherit"
+      >
+      <button matSuffix mat-button (click)="clearSearch()"><mat-icon >close</mat-icon></button>
+    </mat-form-field>
+
 </div>
-<div class="tw-flex tw-flex-row tw-m-24-px">
-  <section class="trending-subjects">
-    <div class="tw-font-600 tw-text-24-px">Trending Subjects</div>
-    <ul class="tw-list-none tw-pl-0">
-      <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects" routerLink="/trending-subject/{{ subject.name }}">
-        {{ subject.name }}
-      </li>
-    </ul>
-  </section>
+  <div class="tw-flex tw-flex-row tw-m-24-px" [ngClass]="isNotVisible ? 'trending-visible' : ''">
+    <section class="trending-subjects">
+      <div class="tw-font-600 tw-text-24-px">Trending Subjects</div>
+      <ul class="tw-list-none tw-pl-0">
+        <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects" routerLink="/trending-subject/{{ subject.name }}">
+          {{ subject.name }}
+        </li>
+      </ul>
+    </section>
+  </div>
+<section [ngClass]="!isNotVisible ? 'trending-visible' : ''">
+  <div class="tw-text-24-px tw-m-24-px">
+
+    <span>
+                <i class="link-in" *ngIf="!authorSearch" (click)="changeSearch()">Search authors instead?</i>
+                <i class="link-in" *ngIf="authorSearch" (click)="changeSearch()">Search book instead?</i>
+    </span>
+  </div>
+<div *ngIf="searchText.length > 0">
+  <ng-container *ngIf="!authorSearch; else authorsearch">
+      <front-end-internship-assignment-search  [subjectName]="searchText"></front-end-internship-assignment-search>
+    </ng-container>
+  <ng-template #authorsearch>
+  <front-end-internship-assignment-search-author [subjectName]="searchText"></front-end-internship-assignment-search-author>
+  </ng-template>
+ </div>
+
+
+</section>
+
 </div>

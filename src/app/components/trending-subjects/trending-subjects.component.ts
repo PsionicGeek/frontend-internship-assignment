@@ -10,7 +10,7 @@ import { Book } from 'src/app/core/models/book-response.model';
 })
 export class TrendingSubjectsComponent implements OnInit {
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   subjectName: string = '';
 
@@ -22,9 +22,10 @@ export class TrendingSubjectsComponent implements OnInit {
   ) {}
 
   getAllBooks() {
+    this.isLoading = true;
     this.subjectsService.getAllBooks(this.subjectName).subscribe((data) => {
       this.allBooks = data?.works;
-      // this.subjectsArray = data;
+      // \this.subjectsArray = data;
       this.isLoading = false;
     });
   }

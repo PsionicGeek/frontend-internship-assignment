@@ -1,0 +1,11 @@
+<div class="sidebar">
+
+    <ul class="sidebar-nav">
+            <li class="sidebar-nav-item" *ngFor="let item of sidebarData">
+                <a class="sidebar-nav-link" [routerLink]="[item.routeLink]">
+                    <button class="sidebar-nav-link-icon">{{item.label[0]}}</button>
+                    <span class="sidebar-nav-item-text">{{item.label}}</span>
+                </a>
+            </li>
+    </ul>
+</div>

@@ -1,3 +1,15 @@
+.body{
+  width: calc(100% - 16rem);
+  height: 100%;
+  margin-left: 16rem;
+  z-index: 0;
+    position: relative;
+  top: 0;
+  transition:all .5s ease;
+  background: #f4f7fa;
+
+}
+
 .header {
   @apply
   tw-flex
@@ -5,15 +17,16 @@
   tw-justify-between
   tw-items-center
   tw-rounded-4-px
-  tw-p-12-px
-  tw-m-24-px;
+  tw-p-12-px;
   background: linear-gradient(146deg, #e1eeff 19.67%, #ffe4fb 127.56%);
+  align-items: center;
+
 }
 
 .search-button {
   @apply
-  tw-border 
-  tw-border-solid 
+  tw-border
+  tw-border-solid
   tw-border-dark-border
   tw-rounded-4-px
   tw-flex
@@ -21,11 +34,41 @@
   tw-h-60-px
   tw-w-200-px
 }
-
+.home-style{
+  display: flex;
+  align-items: center;
+  padding: 0.625rem 0.938rem;
+  border-radius: 0.313rem;
+  color: #000;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .3s ease;
+  &:hover{
+    background: #fff;
+    color: #263238;
+  }
+}
 .trending-subjects {
   @apply
   tw-bg-table-header-bg
   tw-p-12-px
   tw-rounded-4-px
   tw-shadow-lg
+}
+
+.trending-visible{
+  display: none;
+}
+.link-in{
+  color: blueviolet;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+mat-form-field{
+  font-size: 14px;
+
 }

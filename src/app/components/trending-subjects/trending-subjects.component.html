@@ -1,6 +1,21 @@
-<div *ngIf="allBooks.length > 0">
+<div class="body">
+
+  <div class="header">
+    <a routerLink="/" class="home-style">
+    <div class="tw-text-24-px tw-font-600" >
+      Home
+    </div>
+    </a>
+  </div>
+  <div *ngIf="isLoading" class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+
+
+  <div *ngIf="allBooks.length > 0&&!isLoading">
   <front-end-internship-assignment-table-view
   [booksList]="allBooks"
   [subjectName]="subjectName"
   ></front-end-internship-assignment-table-view>
+</div>
 </div>

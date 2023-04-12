@@ -20,13 +20,16 @@ module.exports = {
     fontSize: {
       '14-px': '14px',
       '16-px': '16px',
+      '18-px': '18px',
+        '20-px': '20px',
+        '22-px': '22px',
       '24-px': '24px',
     },
     extend: {
       colors: {
         ...customColors
       },
-      borderRadius: { 
+      borderRadius: {
         '4-px': '4px',
       },
       margin: {
