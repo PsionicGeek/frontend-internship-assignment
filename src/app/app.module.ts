@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TrendingSubjectsComponent } from '../app/components/trending-subjects/trending-subjects.component';
 import { HomeComponent } from '../app/components/home/home.component';
@@ -16,6 +16,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SearchAuthorTableComponent} from "./components/searchAuthorTable/searchauthortable.component";
 import {MatInputModule} from "@angular/material/input";
+import {HttpCacheInterceptor} from "./core/services/http-cache-interceptor.service";
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import {MatInputModule} from "@angular/material/input";
         BrowserAnimationsModule,
         MatInputModule
     ],
-  providers: [],
+  providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: HttpCacheInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
